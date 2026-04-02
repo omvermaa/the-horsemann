@@ -27,7 +27,7 @@ export default function Home() {
             {/* Block 1 */}
             <div className="h-[100dvh] flex flex-col items-center justify-center text-center px-4">
               <OverlayText>
-                <h1 className="text-5xl md:text-8xl font-light tracking-widest text-foreground uppercase mb-4 md:mb-6 drop-shadow-2xl">
+                <h1 className="text-4xl md:text-8xl font-light tracking-wider md:tracking-widest text-foreground uppercase mb-4 md:mb-6 drop-shadow-2xl">
                   The Horsemann
                 </h1>
                 <p className="text-gold tracking-widest text-sm md:text-base uppercase drop-shadow-md">

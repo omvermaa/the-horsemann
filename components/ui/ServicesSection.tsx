@@ -46,21 +46,24 @@ function ServiceCard({ i, service, progress, isExpanded, onToggle }: { i: number
 
   return (
     <motion.div 
-      className="flex flex-col relative w-full rounded-3xl border border-white/10 p-8 md:p-10 backdrop-blur-xl bg-black/60 overflow-hidden cursor-pointer min-h-[300px]"
+      className="flex flex-col relative w-full rounded-3xl border border-white/10 p-8 md:p-10 backdrop-blur-xl bg-black/60 overflow-hidden cursor-pointer h-auto transition-colors duration-300"
       style={{ y: yOffset, scale }}
       initial="rest"
       animate={isExpanded ? "hovered" : "rest"}
+      whileHover="hovered"
       data-expanded={isExpanded}
-      whileHover={!isExpanded ? { borderColor: "rgba(212, 175, 55, 0.3)" } : {}}
-      onClick={onToggle}
+      onClick={(e) => {
+        e.stopPropagation();
+        onToggle();
+      }}
     >
-        <div className="relative z-10 flex flex-col justify-between h-full">
-          <div>
-            <div className="flex items-start justify-between mb-6 gap-4">
-               <span className="text-gold tracking-widest text-lg md:text-xl uppercase opacity-80 font-medium">0{i + 1}</span>
+        <div className="relative z-10 flex flex-col h-full">
+          <div className="w-full">
+            <div className="flex items-start justify-between mb-4 gap-4">
+               <span className="text-gold tracking-widest text-lg md:text-xl uppercase opacity-80 font-medium shrink-0">0{i + 1}</span>
                <h3 className="text-2xl md:text-3xl font-light tracking-wide text-foreground drop-shadow-md text-right">{service.title}</h3>
             </div>
-            <h4 className="text-lg md:text-xl text-white/80 font-light">{service.short}</h4>
+            <h4 className="text-lg md:text-xl text-white/80 font-light pr-4">{service.short}</h4>
           </div>
           
           <motion.div 
@@ -68,8 +71,8 @@ function ServiceCard({ i, service, progress, isExpanded, onToggle }: { i: number
               rest: { opacity: 0, height: 0, marginTop: 0 },
               hovered: { opacity: 1, height: "auto", marginTop: "1.5rem" }
             }}
-            transition={{ duration: 0.4, ease: "easeInOut" }}
-            className="text-white/80 text-base leading-relaxed border-l-2 border-gold/50 pl-4"
+            transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
+            className="text-white/80 text-base leading-relaxed border-l-2 border-gold/50 pl-4 overflow-hidden"
           >
             {service.long}
           </motion.div>
