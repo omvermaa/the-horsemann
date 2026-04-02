@@ -1,5 +1,5 @@
 "use client";
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { motion, useScroll, useTransform, MotionValue } from 'framer-motion';
 
 const services = [
@@ -35,7 +35,7 @@ const services = [
   }
 ];
 
-function ServiceCard({ i, service, progress }: { i: number, service: typeof services[0], progress: MotionValue<number> }) {
+function ServiceCard({ i, service, progress, isExpanded, onToggle }: { i: number, service: typeof services[0], progress: MotionValue<number>, isExpanded: boolean, onToggle: () => void }) {
   // Stagger the start and end of each card's animation based on its index
   const start = i * 0.08;
   const end = start + 0.4;
@@ -46,10 +46,13 @@ function ServiceCard({ i, service, progress }: { i: number, service: typeof serv
 
   return (
     <motion.div 
-      className="flex flex-col relative w-full rounded-3xl border border-white/10 p-8 md:p-10 backdrop-blur-xl bg-black/60 overflow-hidden cursor-crosshair h-full"
+      className="flex flex-col relative w-full rounded-3xl border border-white/10 p-8 md:p-10 backdrop-blur-xl bg-black/60 overflow-hidden cursor-pointer min-h-[300px]"
       style={{ y: yOffset, scale }}
-      whileHover="hovered"
-      animate="rest"
+      initial="rest"
+      animate={isExpanded ? "hovered" : "rest"}
+      data-expanded={isExpanded}
+      whileHover={!isExpanded ? { borderColor: "rgba(212, 175, 55, 0.3)" } : {}}
+      onClick={onToggle}
     >
         <div className="relative z-10 flex flex-col justify-between h-full">
           <div>
@@ -66,7 +69,7 @@ function ServiceCard({ i, service, progress }: { i: number, service: typeof serv
               hovered: { opacity: 1, height: "auto", marginTop: "1.5rem" }
             }}
             transition={{ duration: 0.4, ease: "easeInOut" }}
-            className="text-white/60 text-base leading-relaxed border-l-2 border-gold/50 pl-4"
+            className="text-white/80 text-base leading-relaxed border-l-2 border-gold/50 pl-4"
           >
             {service.long}
           </motion.div>
@@ -97,6 +100,7 @@ function ServiceCard({ i, service, progress }: { i: number, service: typeof serv
 
 export default function ServicesSection() {
   const container = useRef<HTMLDivElement>(null);
+  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
   
   const { scrollYProgress } = useScroll({
     target: container,
@@ -124,9 +128,16 @@ export default function ServicesSection() {
           </div>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 w-full max-w-7xl relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 w-full max-w-7xl relative z-10 items-start">
            {services.map((service, i) => (
-              <ServiceCard key={i} i={i} service={service} progress={scrollYProgress} />
+              <ServiceCard 
+                key={i} 
+                i={i} 
+                service={service} 
+                progress={scrollYProgress} 
+                isExpanded={expandedIndex === i}
+                onToggle={() => setExpandedIndex(expandedIndex === i ? null : i)}
+              />
            ))}
         </div>
       </div>
