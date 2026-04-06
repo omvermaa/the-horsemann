@@ -8,19 +8,19 @@ import Image from "next/image";
 
 const detailedServices = [
   {
-    id: "seo",
+    id: "web-dev",
     number: "01",
-    title: "Search Engine Domination",
-    subtitle: "Commanding the algorithm. Capturing high-intent traffic.",
-    description: "We don't do basic SEO. We engineer infrastructure that tells Google exactly who rules your sector. From microscopic technical overhauls to aggressive backlink acquisition, we position your brand exactly where your highest-paying clients are looking.",
-    points: ["Technical Infrastructure Audits", "Keyword Dominance Strategy", "High-Authority Link Building", "Content Empire Creation"],
-    color: "from-blue-500/20 to-transparent",
-    image: "/seo_v2.png",
+    title: "Website & Apps Solution",
+    subtitle: "Architecting buttery-smooth web dominance.",
+    description: "A website is not an online brochure; it is your digital headquarters. We build bleeding-edge, highly optimized web applications using modern tech stacks (Next.js, React, WebGL) to deliver experiences that simply refuse to be ignored.",
+    points: ["Headless Commerce Next.js", "Custom WebApp Architecture", "Sub-second Load Optimization", "Immersive Canvas/WebGL"],
+    color: "from-emerald-500/20 to-transparent",
+    image: "/web_v2.png",
   },
   {
     id: "social-media",
     number: "02",
-    title: "Social Ecosystems",
+    title: "Social Media Management",
     subtitle: "Cultivating digital empires and an army of advocates.",
     description: "Your social media is your digital storefront. We turn it into a conversion engine. We develop, curate, and scale your brand's voice across every relevant platform, creating viral moments that translate directly into sustained customer loyalty.",
     points: ["Omnichannel Grid Management", "Viral Content Engineering", "Community Cultivation", "Influencer Syndication"],
@@ -28,9 +28,19 @@ const detailedServices = [
     image: "/social_v2.png",
   },
   {
-    id: "performance-ads",
+    id: "ai-automation",
     number: "03",
-    title: "Precision Acquisition",
+    title: "AI Chatbots & Receptionists",
+    subtitle: "24/7 intelligent automation.",
+    description: "We construct custom AI neural networks that serve as tireless sales associates and receptionists. Automate your customer service, qualify leads instantly, and capture revenue around the clock with zero human friction.",
+    points: ["Custom NLP Conversational Flows", "Automated Lead Qualification", "24/7 Appointment Scheduling", "Dynamic CRM Integration"],
+    color: "from-cyan-500/20 to-transparent",
+    image: "/ai_chatbots_v3.png",
+  },
+  {
+    id: "performance-ads",
+    number: "04",
+    title: "Targetted and Customised AD Campaigns",
     subtitle: "Surgical lead generation designed for scale.",
     description: "We hate wasted ad spend. Our performance matrix is built on rigorous testing, hyper-targeted demographic mapping, and relentless optimization. Every dollar feeds a machine designed to multiply your ROI.",
     points: ["Meta & Google Ecosystems", "Hyper-Targeted Lookalikes", "A/B Creative Warfare", "LTV Maximization"],
@@ -39,7 +49,7 @@ const detailedServices = [
   },
   {
     id: "brand-shoots",
-    number: "04",
+    number: "05",
     title: "Cinematic Production",
     subtitle: "High-end visual storytelling engineered for impact.",
     description: "Amateur visuals destroy premium brands. Our in-house production team shoots commercial-grade photography and videography that captures the raw, sophisticated essence of your brand, triggering instant psychological trust.",
@@ -48,24 +58,14 @@ const detailedServices = [
     image: "/shoots_v2.png",
   },
   {
-    id: "web-dev",
-    number: "05",
-    title: "Digital Flagships",
-    subtitle: "Architecting buttery-smooth web dominance.",
-    description: "A website is not an online brochure; it is your digital headquarters. We build bleeding-edge, highly optimized web applications using modern tech stacks (Next.js, React, WebGL) to deliver experiences that simply refuse to be ignored.",
-    points: ["Headless Commerce Next.js", "Custom WebApp Architecture", "Sub-second Load Optimization", "Immersive Canvas/WebGL"],
-    color: "from-emerald-500/20 to-transparent",
-    image: "/web_v2.png",
-  },
-  {
-    id: "ui-ux",
+    id: "seo",
     number: "06",
-    title: "Experiential Design",
-    subtitle: "Award-winning interfaces that eliminate friction.",
-    description: "Beautiful design means nothing if it doesn't convert. We map the psychological journey of your absolute best customer and design intuitive, breathtakingly beautiful interfaces that guide them seamlessly to the checkout or contact button.",
-    points: ["Psychological User Mapping", "Glassmorphic & Brutalist Aesthetics", "Frictionless Conversion Flows", "Micro-interaction Tuning"],
-    color: "from-fuchsia-500/20 to-transparent",
-    image: "/uiux_v2.png",
+    title: "Search Engine Domination",
+    subtitle: "Commanding the algorithm. Capturing high-intent traffic.",
+    description: "We don't do basic SEO. We engineer infrastructure that tells Google exactly who rules your sector. From microscopic technical overhauls to aggressive backlink acquisition, we position your brand exactly where your highest-paying clients are looking.",
+    points: ["Technical Infrastructure Audits", "Keyword Dominance Strategy", "High-Authority Link Building", "Content Empire Creation"],
+    color: "from-blue-500/20 to-transparent",
+    image: "/seo_v2.png",
   }
 ];
 
@@ -182,12 +182,15 @@ export default function ServicesPage() {
                       </div>
 
                       <div className="mt-12">
-                        <a href="/contact" className="inline-flex items-center gap-4 group">
+                        <button 
+                          onClick={() => window.dispatchEvent(new CustomEvent('horsemann-open-modal'))}
+                          className="inline-flex items-center gap-4 group"
+                        >
                           <span className="text-[10px] text-white/50 group-hover:text-gold uppercase tracking-[0.3em] font-bold transition-colors">
                             Initiate Service
                           </span>
                           <div className="w-8 h-px bg-white/20 group-hover:bg-gold group-hover:w-12 transition-all duration-300" />
-                        </a>
+                        </button>
                       </div>
                     </motion.div>
                   </div>
@@ -201,9 +204,12 @@ export default function ServicesPage() {
         <section className="mt-32 md:mt-56 w-full text-center px-4">
           <OverlayText>
              <h2 className="text-3xl md:text-5xl text-foreground tracking-widest uppercase mb-10">Deploy Strategy.</h2>
-             <a href="/contact" className="inline-block px-8 py-4 border border-white/20 hover:border-gold hover:text-gold transition-colors duration-500 tracking-widest uppercase text-sm">
+             <button 
+               onClick={() => window.dispatchEvent(new CustomEvent('horsemann-open-modal'))}
+               className="inline-block px-8 py-4 border border-white/20 hover:border-gold hover:text-gold transition-colors duration-500 tracking-widest uppercase text-sm"
+             >
                Initiate Contact
-             </a>
+             </button>
           </OverlayText>
         </section>
 

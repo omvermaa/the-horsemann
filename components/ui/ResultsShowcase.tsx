@@ -64,12 +64,12 @@ function PhoneFrame({
         <div className="relative bg-[#1a1a1a] rounded-[1.5rem] md:rounded-[2.5rem] p-[4px] md:p-[6px] shadow-[0_25px_80px_rgba(0,0,0,0.6),0_0_0_1px_rgba(255,255,255,0.08)] border border-white/[0.06]">
           
           {/* Top notch - Smaller on mobile */}
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 z-20 w-[40px] md:w-[90px] h-[12px] md:h-[25px] bg-[#1a1a1a] rounded-b-xl md:rounded-b-2xl flex items-center justify-center">
-            <div className="w-[20px] md:w-[50px] h-[3px] md:h-[5px] bg-[#0a0a0a] rounded-full" />
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 z-20 w-[30px] md:w-[90px] h-[10px] md:h-[25px] bg-[#1a1a1a] rounded-b-lg md:rounded-b-2xl flex items-center justify-center">
+            <div className="w-[15px] md:w-[50px] h-[2px] md:h-[5px] bg-[#0a0a0a] rounded-full" />
           </div>
 
           {/* Screen - Responsive sizing */}
-          <div className="relative w-[40vw] h-[86vw] md:w-[320px] md:h-[690px] rounded-[1.3rem] md:rounded-[2.2rem] overflow-hidden bg-black">
+          <div className="relative w-[36vw] h-[78vw] md:w-[320px] md:h-[690px] rounded-[1.1rem] md:rounded-[2.2rem] overflow-hidden bg-black">
             <Image
               src={`${src}?v=3`}
               alt={alt}

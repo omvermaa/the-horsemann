@@ -35,7 +35,7 @@ export default function FloatingNav() {
   useMotionValueEvent(scrollY, "change", (latest) => {
     if (typeof window !== "undefined") {
       // Different visibility thresholds for different pages
-      const isAltPage = pathname === "/results" || pathname === "/contact" || pathname === "/services";
+      const isAltPage = pathname === "/results" || pathname === "/contact" || pathname === "/services" || pathname === "/about";
       const threshold = isAltPage ? 100 : window.innerHeight * 3.5;
       
       if (latest > threshold) {
@@ -48,7 +48,7 @@ export default function FloatingNav() {
   });
 
   const navLinks = [
-    { name: "About", href: "#" },
+    { name: "About", href: "/about" },
     { name: "Services", href: "/services" },
     { name: "Results", href: "/results" },
     { name: "Contact", href: "/contact" },
@@ -74,13 +74,13 @@ export default function FloatingNav() {
               transition-all duration-500 ease-[0.16, 1, 0.3, 1]
             `}
           >
-            <div className={`flex items-center justify-between w-full ${!isExpanded ? "md:justify-start gap-4 md:gap-7" : "mb-8"}`}>
-              <Link href="/" className="flex items-center transition-all hover:scale-105 hover:brightness-125 active:scale-95 group">
+            <div className={`flex items-center justify-between w-full gap-x-4 ${!isExpanded ? "md:justify-start md:gap-7" : "mb-8"}`}>
+              <Link href="/" className="flex items-center transition-all hover:scale-105 hover:brightness-125 active:scale-95 group shrink-0">
                 <span 
-                  className="text-2xl md:text-4xl text-gold/90 leading-none pt-1 select-none"
+                  className="text-xl md:text-4xl text-gold/90 leading-none pt-1 select-none"
                   style={{ fontFamily: 'var(--font-alex-brush)' }}
                 >
-                  Horsemann
+                  The Horsemann
                 </span>
               </Link>
 

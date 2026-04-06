@@ -128,7 +128,7 @@ export default function ResultsPage() {
               The Proof
             </span>
             <h1 className="text-5xl md:text-8xl lg:text-[10rem] font-light tracking-tighter text-white uppercase drop-shadow-2xl leading-none">
-              Results.
+              Our Work.
             </h1>
             <p className="mt-8 text-white/50 text-sm md:text-lg max-w-2xl mx-auto font-light leading-relaxed">
               We don&apos;t deal in vanity metrics or empty promises. We deal in documented, undeniable scale. Witness the transformation of our partners.
@@ -210,8 +210,8 @@ export default function ResultsPage() {
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-3xl md:text-6xl text-white font-light tracking-tight mb-4">
-              The Evolution.
+            <h2 className="text-5xl md:text-6xl text-white font-light tracking-tight mb-4">
+              RESULTS.
             </h2>
             <p className="text-white/40 max-w-lg mx-auto font-light text-sm md:text-base">
               Growth isn&apos;t an accident. It is engineered systematically. View the digital transformation side-by-side.
@@ -324,7 +324,10 @@ export default function ResultsPage() {
         <section className="mt-32 md:mt-56 w-full text-center">
           <OverlayText>
              <h2 className="text-3xl md:text-5xl text-foreground tracking-widest uppercase mb-10 px-4">Start Your Reign.</h2>
-             <button className="px-8 py-4 border border-white/20 hover:border-gold hover:text-gold transition-colors duration-500 tracking-widest uppercase text-sm">
+             <button 
+               onClick={() => window.dispatchEvent(new CustomEvent('horsemann-open-modal'))}
+               className="px-8 py-4 border border-white/20 hover:border-gold hover:text-gold transition-colors duration-500 tracking-widest uppercase text-sm"
+             >
                Initiate Contact
              </button>
           </OverlayText>

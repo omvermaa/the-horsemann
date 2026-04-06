@@ -10,7 +10,7 @@ export default function WhatsAppPopup() {
 
   // Example WhatsApp Link - Replace with actual business number
   // Format: https://wa.me/1XXXXXXXXXX?text=URL-encoded-text
-  const whatsappUrl = "https://wa.me/1234567890?text=I'm%20interested%20in%20scaling%20my%20brand.";
+  const whatsappUrl = "https://wa.me/919910815516?text=I'm%20interested%20in%20scaling%20my%20brand.";
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     if (typeof window !== "undefined") {

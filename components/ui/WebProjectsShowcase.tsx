@@ -66,7 +66,6 @@ function LaptopFrame({ src, alt, stretch }: { src: string; alt: string; stretch?
   return (
     <div className="relative mx-auto w-full" style={{ maxWidth: 820 }}>
       <div className="relative bg-[#1a1a1a] rounded-t-xl md:rounded-t-2xl p-[6px] md:p-[8px] border border-white/[0.06] shadow-[0_-4px_60px_rgba(0,0,0,0.5)]">
-        <div className="absolute top-[3px] left-1/2 -translate-x-1/2 z-30 w-[6px] h-[6px] rounded-full bg-[#333] border border-[#222]" />
         <div className="relative w-full aspect-[16/10] rounded-md md:rounded-lg overflow-hidden bg-black">
           <AnimatePresence mode="wait">
             <motion.div
@@ -104,10 +103,10 @@ function MobileFrame({ src, alt }: { src: string; alt: string }) {
   return (
     <div className="relative">
       <div className="relative bg-[#1a1a1a] rounded-[2rem] p-[5px] shadow-[0_20px_60px_rgba(0,0,0,0.5),0_0_0_1px_rgba(255,255,255,0.06)] border border-white/[0.06]">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 z-20 w-[70px] h-[20px] bg-[#1a1a1a] rounded-b-xl flex items-center justify-center">
-          <div className="w-[40px] h-[4px] bg-[#0a0a0a] rounded-full" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 z-20 w-[40px] h-[12px] md:w-[70px] md:h-[20px] bg-[#1a1a1a] rounded-b-lg md:rounded-b-xl flex items-center justify-center">
+          <div className="w-[20px] h-[2px] md:w-[40px] md:h-[4px] bg-[#0a0a0a] rounded-full" />
         </div>
-        <div className="relative w-[180px] h-[390px] md:w-[200px] md:h-[432px] rounded-[1.7rem] overflow-hidden bg-black">
+        <div className="relative w-[100px] h-[215px] md:w-[230px] md:h-[500px] rounded-[1rem] md:rounded-[1.8rem] overflow-hidden bg-black">
           <AnimatePresence mode="wait">
             <motion.div
               key={src}
@@ -222,7 +221,7 @@ function ProjectCard({
         {/* Phone */}
         {slide.mobile && (
           <motion.div
-            className="relative -ml-20 md:-ml-28 mb-[-10px] md:mb-[-15px] z-10"
+            className="relative -ml-8 md:-ml-28 mb-[-10px] md:mb-[-15px] z-10"
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}

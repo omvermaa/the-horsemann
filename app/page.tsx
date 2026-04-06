@@ -9,7 +9,6 @@ import ResultsShowcase from '@/components/ui/ResultsShowcase';
 import WebProjectsShowcase from '@/components/ui/WebProjectsShowcase';
 import FloatingNav from '@/components/ui/FloatingNav';
 import WhatsAppPopup from '@/components/ui/WhatsAppPopup';
-import MandatoryModal from '@/components/ui/MandatoryModal';
 
 export default function Home() {
   return (
@@ -17,7 +16,6 @@ export default function Home() {
       <main className="relative w-full bg-background selection:bg-white selection:text-black">
         <FloatingNav />
         <WhatsAppPopup />
-        <MandatoryModal />
         
         {/* The 400vh scrollytelling section */}
         <section className="relative w-full">
@@ -175,7 +173,10 @@ export default function Home() {
         <section className="h-[100dvh] flex flex-col items-center justify-center bg-background border-t border-white/10 relative z-10">
            <OverlayText className="flex flex-col items-center">
              <h2 className="text-3xl md:text-5xl text-foreground tracking-widest uppercase mb-10 text-center px-4">Mount Up.</h2>
-             <button className="px-8 py-4 border border-white/20 hover:border-gold hover:text-gold transition-colors duration-500 tracking-widest uppercase text-sm">
+            <button 
+               onClick={() => window.dispatchEvent(new CustomEvent('horsemann-open-modal'))}
+               className="px-8 py-4 border border-white/20 hover:border-gold hover:text-gold transition-colors duration-500 tracking-widest uppercase text-sm"
+            >
                Initiate Contact
              </button>
            </OverlayText>
