@@ -8,8 +8,8 @@ export default function HeroScroll() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   
   // Update frameCount based on the actual number of generated assets
-  const frameCount = 120; 
-  const { images, loaded } = useImagePreloader(frameCount, '/horse/ezgif-frame-', 3, 'jpg');
+  const frameCount = 68; 
+  const { images, loaded } = useImagePreloader(frameCount, '/horse/frame_', 3, 'jpg');
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -27,10 +27,18 @@ export default function HeroScroll() {
     canvasRef.current.width = window.innerWidth;
     canvasRef.current.height = window.innerHeight;
 
+    // Detect mobile for custom focus
+    const isMobile = window.innerWidth < 768;
+
     // Object-cover logic for Canvas
     const scale = Math.max(canvasRef.current.width / img.width, canvasRef.current.height / img.height);
-    const x = (canvasRef.current.width / 2) - (img.width / 2) * scale;
-    const y = (canvasRef.current.height / 2) - (img.height / 2) * scale;
+    
+    // Horizontal focus point (0.5 is center, >0.5 moves image left to show more of the right side)
+    // On mobile, focus more on the warrior/horse group (around 62% of image width)
+    const focusX = isMobile ? 0.62 : 0.5;
+    const x = (canvasRef.current.width / 2) - (img.width * focusX) * scale;
+    
+    const y = 0; // Top-aligned to prevent cropping the warrior's head
 
     ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
     ctx.drawImage(img, x, y, img.width * scale, img.height * scale);
