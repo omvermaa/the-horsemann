@@ -72,7 +72,7 @@ export default function GlobalFooter() {
               onClick={openModal}
               className="text-white/40 text-xs uppercase tracking-[0.2em] hover:text-gold hover:scale-105 hover:brightness-125 active:scale-95 transition-all duration-300 inline-block"
             >
-              Initiate Contact
+              Contact Us
             </button>
             <a href="#" className="text-white/40 text-xs uppercase tracking-[0.2em] hover:text-gold hover:scale-105 hover:brightness-125 active:scale-95 transition-all duration-300 inline-block">
               WhatsApp Secure
@@ -99,8 +99,8 @@ export default function GlobalFooter() {
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-3 h-3 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
             </a>
             <a href="#" className="flex items-center gap-2 text-white/40 hover:text-gold hover:scale-105 hover:brightness-125 active:scale-95 transition-all duration-300 group inline-block">
-              <span className="text-xs uppercase tracking-[0.2em]">LinkedIn</span>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-3 h-3 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+              {/* <span className="text-xs uppercase tracking-[0.2em]">LinkedIn</span> */}
+              {/* <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-3 h-3 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg> */}
             </a>
           </motion.div>
         </div>

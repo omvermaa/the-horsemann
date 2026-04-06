@@ -24,19 +24,19 @@ const services = [
   },
   {
     id: "performance-ads",
-    title: "Targetted and Customised AD Campaigns",
+    title: "Google/Meta Ads",
     short: "Data-driven lead generation.",
     long: "Surgical paid campaigns designed to maximize ROI, minimize ad-spend waste, and pinpoint your exact target demographic at scale."
   },
   {
     id: "brand-shoots",
-    title: "Cinematic Production",
+    title: "Brand Shoots",
     short: "Visual storytelling at scale.",
     long: "High-end photography and commercial videography that captures the raw essence of your brand. We craft visuals engineered for maximum psychological and emotional impact."
   },
   {
     id: "seo",
-    title: "Search Engine Domination",
+    title: "SEO",
     short: "Commanding the top ranks.",
     long: "We engineer your digital presence to outrank competitors and capture high-intent traffic through rigorous, data-driven optimization. We don't just optimize; we conquer the algorithm."
   }

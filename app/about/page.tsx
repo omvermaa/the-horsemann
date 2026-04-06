@@ -19,7 +19,7 @@ const teamFactions = [
     delay: 0.2
   },
   {
-    title: "Cinematic Production",
+    title: "Brand Shoots",
     role: "Filmmakers & Master Editors",
     desc: "Attention is currency. Our production unit creates commercial-grade, scroll-stopping visuals that forcibly command the attention of your highest-paying clients.",
     delay: 0.3
@@ -167,7 +167,7 @@ export default function AboutPage() {
                onClick={() => window.dispatchEvent(new CustomEvent('horsemann-open-modal'))}
                className="inline-block px-8 py-4 border border-white/20 hover:border-gold hover:text-gold transition-colors duration-500 tracking-widest uppercase text-sm"
              >
-               Initiate Contact
+               Contact Us
              </button>
           </OverlayText>
         </section>

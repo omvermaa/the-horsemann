@@ -328,7 +328,7 @@ export default function ResultsPage() {
                onClick={() => window.dispatchEvent(new CustomEvent('horsemann-open-modal'))}
                className="px-8 py-4 border border-white/20 hover:border-gold hover:text-gold transition-colors duration-500 tracking-widest uppercase text-sm"
              >
-               Initiate Contact
+               Contact Us
              </button>
           </OverlayText>
         </section>

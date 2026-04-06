@@ -40,7 +40,7 @@ const detailedServices = [
   {
     id: "performance-ads",
     number: "04",
-    title: "Targetted and Customised AD Campaigns",
+    title: "Google/Meta Ads",
     subtitle: "Surgical lead generation designed for scale.",
     description: "We hate wasted ad spend. Our performance matrix is built on rigorous testing, hyper-targeted demographic mapping, and relentless optimization. Every dollar feeds a machine designed to multiply your ROI.",
     points: ["Meta & Google Ecosystems", "Hyper-Targeted Lookalikes", "A/B Creative Warfare", "LTV Maximization"],
@@ -50,7 +50,7 @@ const detailedServices = [
   {
     id: "brand-shoots",
     number: "05",
-    title: "Cinematic Production",
+    title: "Brand Shoots",
     subtitle: "High-end visual storytelling engineered for impact.",
     description: "Amateur visuals destroy premium brands. Our in-house production team shoots commercial-grade photography and videography that captures the raw, sophisticated essence of your brand, triggering instant psychological trust.",
     points: ["Commercial Videography", "High-Fashion Editorial Shoots", "Product Glamour Shots", "Dynamic Motion Graphics"],
@@ -60,7 +60,7 @@ const detailedServices = [
   {
     id: "seo",
     number: "06",
-    title: "Search Engine Domination",
+    title: "SEO",
     subtitle: "Commanding the algorithm. Capturing high-intent traffic.",
     description: "We don't do basic SEO. We engineer infrastructure that tells Google exactly who rules your sector. From microscopic technical overhauls to aggressive backlink acquisition, we position your brand exactly where your highest-paying clients are looking.",
     points: ["Technical Infrastructure Audits", "Keyword Dominance Strategy", "High-Authority Link Building", "Content Empire Creation"],
@@ -208,7 +208,7 @@ export default function ServicesPage() {
                onClick={() => window.dispatchEvent(new CustomEvent('horsemann-open-modal'))}
                className="inline-block px-8 py-4 border border-white/20 hover:border-gold hover:text-gold transition-colors duration-500 tracking-widest uppercase text-sm"
              >
-               Initiate Contact
+               Contact Us
              </button>
           </OverlayText>
         </section>
