@@ -20,33 +20,45 @@ export default function HeroScroll() {
 
   const drawImage = (index: number) => {
     if (!canvasRef.current || !images[index]) return;
-    const ctx = canvasRef.current.getContext('2d');
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
     const img = images[index];
-    canvasRef.current.width = window.innerWidth;
-    canvasRef.current.height = window.innerHeight;
+    
+    // Calculate scroll progress (0 to 1) for focus interpolation
+    const progress = index / (frameCount - 1);
 
     // Detect mobile for custom focus
     const isMobile = window.innerWidth < 768;
 
-    // Object-cover logic for Canvas
-    const scale = Math.max(canvasRef.current.width / img.width, canvasRef.current.height / img.height);
+    // Use current canvas dimensions (stabilized in useEffect)
+    const scale = Math.max(canvas.width / img.width, canvas.height / img.height);
     
-    // Horizontal focus point (0.5 is center, >0.5 moves image left to show more of the right side)
-    // On mobile, focus more on the warrior/horse group (around 62% of image width)
-    const focusX = isMobile ? 0.62 : 0.5;
-    const x = (canvasRef.current.width / 2) - (img.width * focusX) * scale;
-    
+    // Dynamic Focus Logic
+    // Desktop: Always center (0.5)
+    // Mobile: Smoothly pan from warrior (0.4) to horse (0.75) as we scroll
+    let focusX = 0.5;
+    if (isMobile) {
+      focusX = 0.4 + (progress * 0.35);
+    }
+
+    const x = (canvas.width / 2) - (img.width * focusX) * scale;
     const y = 0; // Top-aligned to prevent cropping the warrior's head
 
-    ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.drawImage(img, x, y, img.width * scale, img.height * scale);
   };
 
   // Initial draw and window resize handling
   useEffect(() => {
-    if (!loaded) return;
+    if (!loaded || !canvasRef.current) return;
+    
+    const canvas = canvasRef.current;
+    
+    // Set initial dimensions
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
     
     // Initial draw
     drawImage(Math.floor(frameIndex.get()));
@@ -54,11 +66,22 @@ export default function HeroScroll() {
     // Resize handler
     let timeoutId: NodeJS.Timeout;
     const handleResize = () => {
-      // Debounce the redraw to avoid stuttering during resize
-      clearTimeout(timeoutId);
-      timeoutId = setTimeout(() => {
-        drawImage(Math.floor(frameIndex.get()));
-      }, 50);
+      // Only resize if width changes or if height changes significantly (> 100px)
+      // This prevents "jumping" when mobile address bar hides/shows
+      const newWidth = window.innerWidth;
+      const newHeight = window.innerHeight;
+      
+      const widthChanged = newWidth !== canvas.width;
+      const heightChangedSignificant = Math.abs(newHeight - canvas.height) > 100;
+
+      if (widthChanged || heightChangedSignificant) {
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(() => {
+          canvas.width = newWidth;
+          canvas.height = newHeight;
+          drawImage(Math.floor(frameIndex.get()));
+        }, 50);
+      }
     };
 
     window.addEventListener('resize', handleResize);
