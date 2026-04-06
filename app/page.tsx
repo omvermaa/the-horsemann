@@ -7,18 +7,20 @@ import OverlayText from '@/components/ui/OverlayText';
 import ServicesSection from '@/components/ui/ServicesSection';
 import ResultsShowcase from '@/components/ui/ResultsShowcase';
 import WebProjectsShowcase from '@/components/ui/WebProjectsShowcase';
+import FloatingNav from '@/components/ui/FloatingNav';
 
 export default function Home() {
   return (
     <SmoothScroll>
       <main className="relative w-full bg-background selection:bg-white selection:text-black">
+        <FloatingNav />
         
         {/* The 400vh scrollytelling section */}
         <section className="relative w-full">
           <HeroScroll />
           
           {/* Absolute Overlays mapped to scroll depth (CSS Grid/Flex positioning over the 400vh) */}
-          <div className="absolute top-0 left-0 w-full h-[400vh] pointer-events-none flex flex-col justify-between py-[50vh]">
+          <div className="absolute top-0 left-0 w-full h-[400vh] pointer-events-none flex flex-col justify-between pt-[15vh] md:pt-[50vh] pb-[50vh]">
             
             {/* Background Texture Fill (Dot Grid) */}
             <div className="absolute inset-0 opacity-[0.15] mix-blend-overlay pointer-events-none z-0" 
@@ -60,7 +62,7 @@ export default function Home() {
               </OverlayText>
 
               {/* Chronicle Fill Sidebar */}
-              <div className="hidden lg:flex flex-col items-end gap-12 relative z-0 opacity-40">
+              {/* <div className="hidden lg:flex flex-col items-end gap-12 relative z-0 opacity-40">
                 {["2019", "2021", "2024"].map((year, i) => (
                    <OverlayText key={i} className="flex items-center gap-4">
                       <span className="text-white/20 text-xs uppercase tracking-widest leading-none">Architecting</span>
@@ -68,7 +70,7 @@ export default function Home() {
                       <div className="w-[1px] h-12 bg-white/10" />
                    </OverlayText>
                 ))}
-              </div>
+              </div> */}
             </div>
 
             {/* Phase 2: The Arsenal (Services) */}
