@@ -88,7 +88,7 @@ const videos = [
 const comparisons = [
   { before: "/before1.jpeg", after: "/after1.jpeg", title: "@rawbyailaan" },
   { before: "/before2.jpeg", after: "/after2.jpeg", title: "@built2revv" },
-  { before: "/before3.png", after: "/after3.png", title: "@soothingseconds_10" },
+  { before: "/before3.png", after: "/after3_v2.png", title: "@soothingseconds_10" },
 ];
 
 export default function ResultsPage() {
