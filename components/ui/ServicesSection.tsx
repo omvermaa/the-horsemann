@@ -1,37 +1,44 @@
 "use client";
 import { useRef, useState } from 'react';
 import { motion, useScroll, useTransform, MotionValue } from 'framer-motion';
+import Link from 'next/link';
 
 const services = [
   {
-    title: "SEO",
-    short: "Dominating search algorithms.",
-    long: "We engineer your digital presence to outrank competitors and capture high-intent traffic through rigorous, data-driven optimization."
+    id: "seo",
+    title: "Search Engine Domination",
+    short: "Commanding the top ranks.",
+    long: "We engineer your digital presence to outrank competitors and capture high-intent traffic through rigorous, data-driven optimization. We don't just optimize; we conquer the algorithm."
   },
   {
-    title: "Social Media Marketing",
-    short: "Cultivating digital communities.",
-    long: "We manage and scale your brand's voice across social ecosystems, creating viral impact and sustained customer loyalty."
+    id: "social-media",
+    title: "Social Ecosystems",
+    short: "Cultivating digital empires.",
+    long: "We manage and scale your brand's voice across social ecosystems, engineering virality and sustained customer loyalty. Turn passive followers into an army of brand advocates."
   },
   {
-    title: "Google/Meta Ads",
-    short: "Precision lead generation.",
-    long: "Data-driven paid campaigns designed to maximize ROI, minimize waste, and pinpoint your exact target demographic at scale."
+    id: "performance-ads",
+    title: "Precision Acquisition",
+    short: "Data-driven lead generation.",
+    long: "Surgical paid campaigns designed to maximize ROI, minimize ad-spend waste, and pinpoint your exact target demographic at scale."
   },
   {
-    title: "Brand Shoots",
-    short: "Cinematic content creation.",
-    long: "High-end photography and videography that captures the raw essence of your brand, engineered for maximum visual impact."
+    id: "brand-shoots",
+    title: "Cinematic Production",
+    short: "Visual storytelling at scale.",
+    long: "High-end photography and commercial videography that captures the raw essence of your brand. We craft visuals engineered for maximum psychological and emotional impact."
   },
   {
-    title: "Website / App Development",
-    short: "Architecting digital flagship experiences.",
-    long: "We build robust, scalable, and buttery-smooth web and mobile applications using bleeding-edge modern tech stacks."
+    id: "web-dev",
+    title: "Digital Flagships",
+    short: "Architecting web & app dominance.",
+    long: "We build robust, scalable, and buttery-smooth web and mobile applications using bleeding-edge modern tech stacks designed for ultimate performance and conversion."
   },
   {
-    title: "UI/UX Web Design",
+    id: "ui-ux",
+    title: "Experiential Design",
     short: "Award-winning interfaces.",
-    long: "Designing intuitive, visually stunning user journeys that captivate attention and convert visitors into lifelong advocates."
+    long: "Designing intuitive, visually stunning user journeys that captivate attention, eliminate friction, and convert casual visitors into lifelong clients."
   }
 ];
 
@@ -49,7 +56,7 @@ function ServiceCard({ i, service, progress, isExpanded, onToggle }: { i: number
       className="flex flex-col relative w-full rounded-3xl border border-white/10 p-8 md:p-10 backdrop-blur-xl bg-black/60 overflow-hidden cursor-pointer h-auto transition-colors duration-300"
       style={{ y: yOffset, scale }}
       initial="rest"
-      animate={isExpanded ? "hovered" : "rest"}
+      animate={isExpanded ? "expanded" : "rest"}
       whileHover="hovered"
       data-expanded={isExpanded}
       onClick={(e) => {
@@ -69,16 +76,29 @@ function ServiceCard({ i, service, progress, isExpanded, onToggle }: { i: number
           <motion.div 
             variants={{
               rest: { opacity: 0, height: 0, marginTop: 0 },
-              hovered: { opacity: 1, height: "auto", marginTop: "1.5rem" }
+              hovered: { opacity: 1, height: "auto", marginTop: "1.5rem" },
+              expanded: { opacity: 1, height: "auto", marginTop: "1.5rem" }
             }}
             transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
-            className="text-white/80 text-base leading-relaxed border-l-2 border-gold/50 pl-4 overflow-hidden"
+            className="text-white/80 text-base leading-relaxed border-l-2 border-gold/50 pl-4 overflow-hidden flex flex-col gap-4"
           >
-            {service.long}
+            <p>{service.long}</p>
+            <div className="pt-2">
+              <Link 
+                href={`/services#${service.id}`}
+                className="inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] font-bold text-black bg-gold px-4 py-2 rounded-full hover:bg-white transition-colors duration-300"
+              >
+                Learn More
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-3 h-3">
+                  <path d="M5 12h14"></path>
+                  <path d="M12 5l7 7-7 7"></path>
+                </svg>
+              </Link>
+            </div>
           </motion.div>
         </div>
         
-        {/* Glow effect on hover */}
+        {/* Glow effect ONLY on real hover */}
         <motion.div 
            className="absolute inset-0 bg-gradient-to-tr from-gold/0 via-gold/5 to-gold/15 pointer-events-none mix-blend-screen opacity-0"
            variants={{
@@ -88,7 +108,7 @@ function ServiceCard({ i, service, progress, isExpanded, onToggle }: { i: number
            transition={{ duration: 0.4 }}
         />
         
-        {/* Border glow */}
+        {/* Border glow ONLY on real hover */}
         <motion.div
            className="absolute inset-0 rounded-3xl border border-gold/0 pointer-events-none"
            variants={{

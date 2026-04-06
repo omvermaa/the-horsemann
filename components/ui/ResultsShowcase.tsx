@@ -11,13 +11,15 @@ function PhoneFrame({
   alt, 
   label, 
   accentColor = "#d4af37",
-  delay = 0 
+  delay = 0,
+  isBefore = false
 }: { 
   src: string; 
   alt: string; 
   label: string; 
   accentColor?: string;
   delay?: number;
+  isBefore?: boolean;
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
@@ -59,27 +61,27 @@ function PhoneFrame({
         />
         
         {/* Phone body */}
-        <div className="relative bg-[#1a1a1a] rounded-[2.5rem] p-[6px] shadow-[0_25px_80px_rgba(0,0,0,0.6),0_0_0_1px_rgba(255,255,255,0.08)] border border-white/[0.06]">
+        <div className="relative bg-[#1a1a1a] rounded-[1.5rem] md:rounded-[2.5rem] p-[4px] md:p-[6px] shadow-[0_25px_80px_rgba(0,0,0,0.6),0_0_0_1px_rgba(255,255,255,0.08)] border border-white/[0.06]">
           
-          {/* Top notch / dynamic island */}
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 z-20 w-[90px] h-[25px] bg-[#1a1a1a] rounded-b-2xl flex items-center justify-center">
-            <div className="w-[50px] h-[5px] bg-[#0a0a0a] rounded-full" />
+          {/* Top notch - Smaller on mobile */}
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 z-20 w-[40px] md:w-[90px] h-[12px] md:h-[25px] bg-[#1a1a1a] rounded-b-xl md:rounded-b-2xl flex items-center justify-center">
+            <div className="w-[20px] md:w-[50px] h-[3px] md:h-[5px] bg-[#0a0a0a] rounded-full" />
           </div>
 
-          {/* Screen */}
-          <div className="relative w-[260px] h-[560px] md:w-[280px] md:h-[600px] rounded-[2.2rem] overflow-hidden bg-black">
+          {/* Screen - Responsive sizing */}
+          <div className="relative w-[40vw] h-[86vw] md:w-[320px] md:h-[690px] rounded-[1.3rem] md:rounded-[2.2rem] overflow-hidden bg-black">
             <Image
-              src={src}
+              src={`${src}?v=3`}
               alt={alt}
               fill
-              className="object-cover object-top"
-              sizes="280px"
+              className={`object-cover object-top transition-all duration-700 ${isBefore ? 'grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100' : ''}`}
+              sizes="(max-width: 768px) 40vw, 320px"
               quality={90}
             />
           </div>
 
           {/* Bottom bar */}
-          <div className="absolute bottom-[6px] left-1/2 -translate-x-1/2 z-20 w-[100px] h-[4px] bg-white/20 rounded-full" />
+          <div className="absolute bottom-[6px] left-1/2 -translate-x-1/2 z-20 w-[60px] md:w-[100px] h-[3px] md:h-[4px] bg-white/20 rounded-full" />
         </div>
       </motion.div>
     </motion.div>
@@ -96,7 +98,7 @@ function AnimatedArrow({ growth }: { growth: string }) {
   return (
     <motion.div
       ref={ref}
-      className="flex flex-col items-center justify-center gap-3 py-8 md:py-0"
+      className="hidden lg:flex flex-col items-center justify-center gap-3 py-8 md:py-0"
       initial={{ opacity: 0, scale: 0.5 }}
       animate={isInView ? { opacity: 1, scale: 1 } : {}}
       transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
@@ -250,7 +252,7 @@ export default function ResultsShowcase() {
 
         {/* ── Tab switcher ── */}
         <div className="flex justify-center mb-14">
-          <div className="relative inline-flex bg-white/5 rounded-full p-1 border border-white/10 backdrop-blur-md">
+          <div className="relative inline-flex bg-white/5 rounded-full p-5 border border-white/10 backdrop-blur-md">
             {caseStudies.map((cs, i) => (
               <button
                 key={cs.id}
@@ -282,13 +284,14 @@ export default function ResultsShowcase() {
             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
           >
             {/* Phones row */}
-            <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 lg:gap-24">
+            <div className="flex flex-row items-start justify-center gap-4 md:gap-16 lg:gap-24">
               <PhoneFrame
                 src={study.before.src}
                 alt={study.before.alt}
                 label="Before"
                 accentColor="#888888"
                 delay={0}
+                isBefore={true}
               />
 
               <AnimatedArrow growth={study.growth} />
@@ -299,6 +302,7 @@ export default function ResultsShowcase() {
                 label="After"
                 accentColor="#d4af37"
                 delay={0.3}
+                isBefore={false}
               />
             </div>
 

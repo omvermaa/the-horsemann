@@ -12,41 +12,57 @@ import Image from "next/image";
 /* ─────────────────────────────────────
    Project data — grouped as requested
    ───────────────────────────────────── */
-const projects = [
+interface Slide {
+  desktop: string;
+  mobile: string | null;
+  stretch?: boolean;
+}
+
+interface Project {
+  id: number;
+  name: string;
+  description: string;
+  slides: Slide[];
+  stretch?: boolean;
+}
+
+const projects: Project[] = [
   {
     id: 1,
-    name: "Project Alpha",
-    description: "Brand-first e-commerce experience",
-    slides: [{ desktop: "/web1.png", mobile: null }],
-  },
-  {
-    id: 2,
-    name: "Project Bravo",
-    description: "High-conversion landing system",
-    slides: [{ desktop: "/web2.png", mobile: "/web2-mobile.PNG" }],
-  },
-  {
-    id: 3,
-    name: "The Horizon Suite",
+    name: "ShivShakkti Tarot",
     description: "Delta, Charlie & Foxtrot internal ecosystem",
     slides: [
-      { desktop: "/web3.png", mobile: "/web3-mobile.PNG" },
-      { desktop: "/web4.png", mobile: "/web4-mobile.PNG" },
-      { desktop: "/web6.png", mobile: "/web6-mobile.PNG" },
+      { desktop: "/web3.png", mobile: "/web3-mobile.PNG", stretch: true },
+      { desktop: "/web4.png", mobile: "/web4-mobile.PNG", stretch: true },
+      { desktop: "/web6.png", mobile: "/web6-mobile.PNG", stretch: true },
     ],
   },
   {
-    id: 4,
-    name: "Project Echo",
+    id: 2,
+    name: "Aarambh Infrastructures",
     description: "Performance marketing site",
-    slides: [{ desktop: "/web5.png", mobile: "/web5-phone.png" }],
+    slides: [{ desktop: "/web5.png", mobile: "/web5-mobile.jpeg", stretch: true }],
+  },
+  {
+    id: 3,
+    name: "Calcux: Fashion Store",
+    description: "Brand-first e-commerce experience",
+    slides: [{ desktop: "/web1.png", mobile: "/web1-mobile.png" }],
+    stretch: true,
+  },
+  {
+    id: 4,
+    name: "Desha Builders",
+    description: "High-conversion landing system",
+    slides: [{ desktop: "/web2.png", mobile: "/web2-mobile.PNG" }],
+    stretch: true,
   },
 ];
 
 /* ──────────────────────────
    Laptop Frame
    ────────────────────────── */
-function LaptopFrame({ src, alt }: { src: string; alt: string }) {
+function LaptopFrame({ src, alt, stretch }: { src: string; alt: string; stretch?: boolean }) {
   return (
     <div className="relative mx-auto w-full" style={{ maxWidth: 820 }}>
       <div className="relative bg-[#1a1a1a] rounded-t-xl md:rounded-t-2xl p-[6px] md:p-[8px] border border-white/[0.06] shadow-[0_-4px_60px_rgba(0,0,0,0.5)]">
@@ -62,10 +78,10 @@ function LaptopFrame({ src, alt }: { src: string; alt: string }) {
               className="absolute inset-0"
             >
               <Image
-                src={src}
+                src={`${src}?v=4`}
                 alt={alt}
                 fill
-                className="object-contain" // Fit entire image
+                className={stretch ? "object-fill" : "object-contain"} 
                 sizes="(max-width: 768px) 95vw, 820px"
                 quality={85}
               />
@@ -102,7 +118,7 @@ function MobileFrame({ src, alt }: { src: string; alt: string }) {
               className="absolute inset-0"
             >
               <Image
-                src={src}
+                src={`${src}?v=4`}
                 alt={alt}
                 fill
                 className="object-contain" // Fit entire image
@@ -192,21 +208,21 @@ function ProjectCard({
       </motion.div>
 
       <motion.div
-        className="flex items-end justify-center gap-6 md:gap-10"
+        className="flex items-end justify-center px-4"
         initial={{ opacity: 0, y: 40, rotateX: 8 }}
         animate={isInView ? { opacity: 1, y: 0, rotateX: 0 } : {}}
         transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
         style={{ perspective: 1200 }}
       >
         {/* Laptop */}
-        <div className={`${slide.mobile ? "flex-1 max-w-[700px]" : "w-full max-w-[820px]"}`}>
-          <LaptopFrame src={slide.desktop} alt={`${project.name} desktop`} />
+        <div className={`${slide.mobile ? "w-full max-w-[700px]" : "w-full max-w-[820px]"}`}>
+          <LaptopFrame src={slide.desktop} alt={`${project.name} desktop`} stretch={slide.stretch || project.stretch} />
         </div>
 
         {/* Phone */}
         {slide.mobile && (
           <motion.div
-            className="relative -ml-16 md:-ml-24 mb-0 z-10 hidden sm:block"
+            className="relative -ml-20 md:-ml-28 mb-[-10px] md:mb-[-15px] z-10"
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}

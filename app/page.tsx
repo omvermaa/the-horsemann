@@ -8,12 +8,16 @@ import ServicesSection from '@/components/ui/ServicesSection';
 import ResultsShowcase from '@/components/ui/ResultsShowcase';
 import WebProjectsShowcase from '@/components/ui/WebProjectsShowcase';
 import FloatingNav from '@/components/ui/FloatingNav';
+import WhatsAppPopup from '@/components/ui/WhatsAppPopup';
+import MandatoryModal from '@/components/ui/MandatoryModal';
 
 export default function Home() {
   return (
     <SmoothScroll>
       <main className="relative w-full bg-background selection:bg-white selection:text-black">
         <FloatingNav />
+        <WhatsAppPopup />
+        <MandatoryModal />
         
         {/* The 400vh scrollytelling section */}
         <section className="relative w-full">

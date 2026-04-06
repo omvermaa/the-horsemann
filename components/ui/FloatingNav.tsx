@@ -1,25 +1,44 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function FloatingNav() {
   const { scrollY } = useScroll();
+  const pathname = usePathname();
   const [visible, setVisible] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const navRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 768);
     handleResize();
     window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+    
+    // Close menu when clicking outside
+    const handleClickOutside = (event: MouseEvent) => {
+      if (isExpanded && navRef.current && !navRef.current.contains(event.target as Node)) {
+        setIsExpanded(false);
+      }
+    };
+    
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isExpanded]);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
-    // Show navbar after scrolling past hero section
     if (typeof window !== "undefined") {
-      if (latest > window.innerHeight * 3.5) {
+      // Different visibility thresholds for different pages
+      const isAltPage = pathname === "/results" || pathname === "/contact" || pathname === "/services";
+      const threshold = isAltPage ? 100 : window.innerHeight * 3.5;
+      
+      if (latest > threshold) {
         setVisible(true);
       } else {
         setVisible(false);
@@ -30,9 +49,9 @@ export default function FloatingNav() {
 
   const navLinks = [
     { name: "About", href: "#" },
-    { name: "Services", href: "#" },
-    { name: "Results", href: "#" },
-    { name: "Contact", href: "#" },
+    { name: "Services", href: "/services" },
+    { name: "Results", href: "/results" },
+    { name: "Contact", href: "/contact" },
   ];
 
   return (
@@ -46,6 +65,7 @@ export default function FloatingNav() {
           className="fixed top-6 inset-x-0 mx-auto z-50 flex justify-center px-4"
         >
           <motion.div
+            ref={navRef}
             layout
             className={`
               relative flex flex-col md:flex-row items-center overflow-hidden
@@ -77,7 +97,7 @@ export default function FloatingNav() {
                     text-[10px] uppercase tracking-[0.2em]
                   `}
                 >
-                  {isExpanded ? "Close" : "Menu"}
+                  {isExpanded ? "Close" : "More"}
                 </button>
               )}
 
@@ -90,8 +110,10 @@ export default function FloatingNav() {
                       <Link
                         key={idx}
                         href={link.href}
-                        className="text-[9px] md:text-[10px] uppercase tracking-[0.2em] text-white/40 hover:text-gold transition-all duration-300"
-                        onClick={(e) => e.preventDefault()}
+                        className="text-[9px] md:text-[12px] uppercase tracking-[0.2em] text-white/40 hover:text-gold transition-all duration-300 hover:scale-105 hover:brightness-125 active:scale-95 inline-block"
+                        onClick={(e) => {
+                          if (link.href === "#") e.preventDefault();
+                        }}
                       >
                         {link.name}
                       </Link>
@@ -122,8 +144,11 @@ export default function FloatingNav() {
                     >
                       <Link
                         href={link.href}
-                        className="text-lg uppercase tracking-[0.4em] text-white/60 hover:text-gold transition-all duration-300 py-2 block"
-                        onClick={() => setIsExpanded(false)}
+                        className="text-lg uppercase tracking-[0.4em] text-white/60 hover:text-gold transition-all duration-300 py-2 block hover:scale-105 hover:brightness-125 active:scale-95"
+                        onClick={(e) => {
+                          if (link.href === "#") e.preventDefault();
+                          setIsExpanded(false);
+                        }}
                       >
                         {link.name}
                       </Link>
