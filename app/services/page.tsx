@@ -66,6 +66,16 @@ const detailedServices = [
     points: ["Technical Infrastructure Audits", "Keyword Dominance Strategy", "High-Authority Link Building", "Content Empire Creation"],
     color: "from-blue-500/20 to-transparent",
     image: "/seo_v2.png",
+  },
+  {
+    id: "3d-modelling",
+    number: "07",
+    title: "3D Modelling",
+    subtitle: "Bringing depth to your digital assets.",
+    description: "We transform flat concepts into immersive 3D realities. Whether it's hyper-realistic product renders or cinematic 3D backgrounds for high-end video production, we engineer visual depth that commands attention.",
+    points: ["Hyper-Realistic Product Renders", "Cinematic Scene Assembly", "Dynamic Lighting Physics", "4K Procedural Texturing"],
+    color: "from-orange-500/20 to-transparent",
+    image: "/model2.jpeg",
   }
 ];
 

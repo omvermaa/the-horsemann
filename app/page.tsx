@@ -49,16 +49,16 @@ export default function Home() {
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 >
                   <div className="absolute top-0 right-0 p-8">
-                    <span className="text-gold text-7xl md:text-9xl font-light opacity-20 group-hover:opacity-40 transition-opacity">5+</span>
+                    <span className="text-gold text-7xl md:text-9xl font-light opacity-20 group-hover:opacity-40 transition-opacity">1+</span>
                   </div>
                   <h2 className="text-gold text-sm uppercase tracking-[0.4em] font-bold mb-4">The Heritage</h2>
-                  <h3 className="text-3xl md:text-5xl text-white font-light mb-6 leading-tight">Half a Decade of <span className="italic">Dominance.</span></h3>
+                  <h3 className="text-3xl md:text-5xl text-white font-light mb-6 leading-tight">Over an Year of <span className="italic">Dominance.</span></h3>
                   <p className="text-white/60 text-lg leading-relaxed">
-                    Engineering digital growth since 2019. We transform potential into precision-crafted legacies.
+                    Engineering digital growth since 2024. We transform potential into precision-crafted legacies.
                   </p>
                   <div className="mt-8 flex gap-4">
                     <div className="h-[1px] flex-1 bg-white/10 self-center" />
-                    <span className="text-[10px] text-white/30 uppercase tracking-widest">Est. MMXIX</span>
+                    <span className="text-[10px] text-white/30 uppercase tracking-widest">Est. MMXXIV</span>
                   </div>
                 </motion.div>
               </OverlayText>
@@ -135,8 +135,8 @@ export default function Home() {
                    </p>
                    <div className="flex gap-6 mb-6">
                      <div className="flex flex-col">
-                       <span className="text-gold text-2xl font-light">5+</span>
-                       <span className="text-white/30 text-[9px] uppercase tracking-widest">Years</span>
+                       <span className="text-gold text-2xl font-light">1+</span>
+                       <span className="text-white/30 text-[9px] uppercase tracking-widest">Year</span>
                      </div>
                      <div className="w-px bg-white/10" />
                      <div className="flex flex-col">
@@ -151,7 +151,7 @@ export default function Home() {
                    </div>
                    <div className="h-px w-full bg-white/10 mb-5" />
                    <p className="text-white/30 text-[10px] uppercase tracking-[0.3em]">
-                     Commanding the Digital Realm since MMXIX
+                     Commanding the Digital Realm since MMXXIV
                    </p>
                  </motion.div>
                </OverlayText>
@@ -160,7 +160,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 3D Perspective Stacking Services */}
+        {/* Modern Grid Services Section with Expanding Cards */}
         <ServicesSection />
 
         {/* Results Showcase — Before/After Phone Mockups */}
